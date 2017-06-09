@@ -1,6 +1,6 @@
 # keepcoding
 
-Here are some ** Keepcoding ** course exercises
+Here are some **Keepcoding** course exercises
 
 ## Requirements
 

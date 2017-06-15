@@ -23,6 +23,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+  console.log('middleware a nivel app');
+  next({status:500, message:'the program will not continue', stack: 'this is stack message'});
+});
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/clients', clients);

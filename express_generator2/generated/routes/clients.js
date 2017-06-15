@@ -7,6 +7,11 @@
 var express = require('express');
 var router = express.Router();
 
+router.use(function(req, res, next){
+    console.log('middleware client route');
+    next();
+});
+
 router.get('/', function(req, res, next) {
     console.log('req.query: '+req.query.name);
     res.send('clients response');

@@ -9,6 +9,7 @@ var router = express.Router();
 
 router.use(function(req, res, next){
     console.log('middleware client route');
+    //res.send("first response");
     next();
 });
 

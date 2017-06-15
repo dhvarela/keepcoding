@@ -7,5 +7,21 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %> Oh yeah! !!</p>
+
+    <%=  parrafo %>
+
+    <%-  parrafo %>
+
+<% if (condition.estado){ %>
+    <p><%= condition.second %> It's odd</p>
+<% }else{ %>
+    <p><%= condition.second %> It's out</p>
+<% }%>
+
+  <h3>Users list</h3>
+
+  <% users.forEach( function(user) { %>
+    <p><%= user.name %></p>
+  <% }); %>
   </body>
 </html>

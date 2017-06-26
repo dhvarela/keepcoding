@@ -5,11 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var clients = require('./routes/clients');
-
 var app = express();
+
+require('./lib/connectMongoose');
+require('./models/Agente');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,9 +28,9 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/clients', clients);
+app.use('/', require('./routes/index'));
+app.use('/clients', require('./routes/clients'));
+app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,7 +47,15 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  if(isAPI(req)) {
+    res.json({ok: false, error: err.message});
+    return;
+  }
   res.render('error');
 });
+
+function isAPI(req){
+  return req.originalUrl.indexOf('/api') === 0
+}
 
 module.exports = app;

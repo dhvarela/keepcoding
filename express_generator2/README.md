@@ -4,7 +4,5 @@ $ express generated --ejs
 
 $ cd generated
 
-$ npm install
 
-$ npm start
 
